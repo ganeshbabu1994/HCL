@@ -8,6 +8,7 @@ import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
+
 const LoginForm = () => {
     const [value, setValue] = useState("");
 const [valid, setValid] = useState(false);
@@ -16,6 +17,10 @@ const [valid, setValid] = useState(false);
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const dashboard=()=>{
+    window.location.replace("/dashboard")
+  }
 
   const onSubmit = (data:any) => {
     // Add your login logic here using the data object
@@ -47,7 +52,7 @@ const [valid, setValid] = useState(false);
       }}
     >
       <Typography variant="h5" component="div" sx={{ mb: 2 }}>
-        Login Form
+        Vaccine & Immunization TS Login
       </Typography>
       <TextField
         fullWidth
@@ -86,8 +91,8 @@ const [valid, setValid] = useState(false);
         label="Provider"
         sx={{ mt: 1, textAlign: 'left' }}
       />
-      <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
-        Login
+      <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }} onClick={dashboard}>
+        Login 
       </Button>
       <Box sx={{ mt: 2, textAlign: 'center' }}>
         <Box mt={1}>
