@@ -52,7 +52,7 @@ const [valid, setValid] = useState(false);
       }}
     >
       <Typography variant="h5" component="div" sx={{ mb: 2 }}>
-        Vaccine & Immunization TS Login
+        Vaccine & Immunization Tracking System Login
       </Typography>
       <TextField
         fullWidth
