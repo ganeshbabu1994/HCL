@@ -19,7 +19,17 @@ const [valid, setValid] = useState(false);
   } = useForm();
 
   const dashboard=()=>{
+    // const fetchApi = async () => {
+    // }
+    //Redux value store base rendering dashboard
+    // if (this.props.getDataReducer.items && this.props.getDataReducer.items.length >= 0) {
+        
+    // }
+    // else{
+
+    // }
     window.location.replace("/dashboard")
+    window.location.replace("/provider_dashboard")
   }
 
   const onSubmit = (data:any) => {

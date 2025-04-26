@@ -26,16 +26,16 @@ const rows = [
 export default function Dashboard() {
 
     React.useEffect(() => {
-        const fetchCounter = async () => {
+        const fetchApi = async () => {
           try {
-          // DATABASE GET CALL for vaccine table
+          // API GET CALL for vaccine table
           } catch (err) {
             // setError(err.message); 
           } finally {
             // setLoading(false); 
           }
         };    
-        fetchCounter(); 
+        fetchApi(); 
       }, []); 
 
   return (
