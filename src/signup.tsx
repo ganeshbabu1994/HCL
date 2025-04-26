@@ -14,10 +14,14 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data:any) => {
+  const onSubmit = (data: any) => {
     // Add your login logic here using the data object
     console.log('Login successful', data);
   };
+
+  const dashboard = () => {
+    window.location.replace("/provider_dashboard")
+  }
 
   return (
     <Box
@@ -46,7 +50,7 @@ const LoginForm = () => {
           },
         })}
         error={Boolean(errors.username)}
-         helperText="Username must be at least 10 characters"
+        helperText="Username must be at least 10 characters"
         margin="normal"
       />
       <TextField
@@ -61,7 +65,7 @@ const LoginForm = () => {
           },
         })}
         error={Boolean(errors.password)}
-         helperText='Password must be at least 6 characters'
+        helperText='Password must be at least 6 characters'
         margin="normal"
         sx={{ mt: 2 }}
       />
@@ -77,7 +81,7 @@ const LoginForm = () => {
           },
         })}
         error={Boolean(errors.password)}
-         helperText='DOM should contain DD/MM/YYYY'
+        helperText='DOM should contain DD/MM/YYYY'
         margin="normal"
         sx={{ mt: 2 }}
       />
@@ -86,7 +90,7 @@ const LoginForm = () => {
         label="Provider"
         sx={{ mt: 1, textAlign: 'left' }}
       />
-      <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
+      <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }} onClick={dashboard}>
         Register
       </Button>
     </Box>

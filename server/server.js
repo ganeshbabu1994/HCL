@@ -17,7 +17,7 @@ socketIO.on('connection', (socket) => {
 });
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Listening!')
 })
 
 app.listen(port, () => {
