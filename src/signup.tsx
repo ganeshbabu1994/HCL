@@ -6,6 +6,10 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import axios from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 const LoginForm = () => {
   const {
@@ -13,10 +17,49 @@ const LoginForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const onSubmit = (data:any) => {
-    // Add your login logic here using the data object
-    console.log('Login successful', data);
+  const onSubmit = async (data: any) => {
+    setIsLoading(true);
+    setError(""); // Clear any previous errors
+    try {
+      const response = await axios.post('https://vaccine-backend.onrender.com/api/auth/register', {
+        email: data.email,
+        password: data.password,
+        name: data.name,
+        role: data.role
+      });
+      
+      if (response.data && response.data.data) {
+        login(response.data.data);
+        navigate('/dashboard');
+      } else {
+        setError('Invalid response from server. Please try again.');
+      }
+    } catch (err: any) {
+      if (err.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        if (err.response.status === 409) {
+          setError('An account with this email already exists.');
+        } else if (err.response.status === 400) {
+          setError('Invalid input. Please check your details and try again.');
+        } else {
+          setError(err.response.data?.error || 'An error occurred during registration. Please try again.');
+        }
+      } else if (err.request) {
+        // The request was made but no response was received
+        setError('No response from server. Please check your internet connection.');
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        setError('An unexpected error occurred. Please try again.');
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

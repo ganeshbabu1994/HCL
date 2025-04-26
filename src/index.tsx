@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import signIn from './signIn';
-import signUp from './signup'
-import patientDashboard from './patientDashboard'
-import providerDashboard from './providerDashboard'
+import SignIn from './signIn';
+import SignUp from './signup';
+import PatientDashboard from './patientDashboard';
+import ProviderDashboard from './providerDashboard';
 import ChatPage from './chatPage';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import socketIO from 'socket.io-client';
+import { AuthProvider } from './AuthContext';
 
 // const socket = socketIO.connect('http://localhost:3000')
 
@@ -46,18 +47,21 @@ import socketIO from 'socket.io-client';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
-  <Router>
-  <Routes>
-      <Route>
-          <Route path="/" Component={signIn}/>
-          <Route path="/signUp" Component={signUp}/>
-          <Route path="/dashboard" Component={patientDashboard}/>
-          <Route path="/provider_dashboard" Component={providerDashboard}/>
-          {/* <Route path="/chat" element={<ChatPage socket={socket} />}></Route> */}
-      </Route>
-  </Routes>
-</Router>
+  <React.StrictMode>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<SignIn />} />
+          <Route path="/signUp" element={<SignUp />} />
+          <Route path="/dashboard" element={<PatientDashboard />} />
+          <Route path="/provider_dashboard" element={<ProviderDashboard />} />
+          <Route path="/chat" element={<ChatPage />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
+  </React.StrictMode>
 );
  
 
