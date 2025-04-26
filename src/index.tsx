@@ -4,7 +4,8 @@ import './index.css';
 import App from './App';
 import signIn from './signIn';
 import signUp from './signup'
-import dashboard from './dashboard'
+import patientDashboard from './patientDashboard'
+import providerDashboard from './providerDashboard'
 import ChatPage from './chatPage';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import socketIO from 'socket.io-client';
@@ -51,7 +52,8 @@ root.render(
       <Route>
           <Route path="/" Component={signIn}/>
           <Route path="/signUp" Component={signUp}/>
-          <Route path="/dashboard" Component={dashboard}/>
+          <Route path="/dashboard" Component={patientDashboard}/>
+          <Route path="/provider_dashboard" Component={providerDashboard}/>
           {/* <Route path="/chat" element={<ChatPage socket={socket} />}></Route> */}
       </Route>
   </Routes>

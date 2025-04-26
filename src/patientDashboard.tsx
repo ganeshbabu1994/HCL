@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import Button  from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 
-function createData(vaccine:any, status:any, action:any) {
+function createData(vaccine:string, status:string, action:string) {
   return { vaccine, status, action };
 }
 
@@ -21,7 +21,23 @@ const rows = [
   createData('RoTAVirus', "overdue", "Edit Delete  Add"),
 ];
 
+
+
 export default function Dashboard() {
+
+    React.useEffect(() => {
+        const fetchCounter = async () => {
+          try {
+          // DATABASE GET CALL for vaccine table
+          } catch (err) {
+            // setError(err.message); 
+          } finally {
+            // setLoading(false); 
+          }
+        };    
+        fetchCounter(); 
+      }, []); 
+
   return (
     <TableContainer component={Paper}>
         <h2 style={{"textAlign":"center"}}>Patient Vaccine & Immunization Tracking System</h2>
